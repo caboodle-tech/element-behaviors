@@ -14,7 +14,7 @@ class ClickCounter {
         // Keep a reference to the Reporter so we can accurately report what is happening.
         this.reporter = window.elementBehaviorsReporter;
 
-        // We have to keep a reference to the listener so we add add and remove it properly.
+        // We have to keep a reference to the listener so we can add and remove it properly.
         this.listener = this.incrementCount.bind(this);
 
         // If this is a brand new Behavior element.

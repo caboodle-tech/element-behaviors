@@ -1,0 +1,138 @@
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --header-background-color: #4b4b4b;
+    --header-text-color: #ffffff;
+    --heading-color: #2a2a2a;
+    --code-background-color: #f5f5f5;
+    --code-text-color: #2a2a2a;
+    --link-color: #1a0dab;
+    --table-border-color: #cccccc;
+    --table-header-background-color: #e0e0e0;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #1e1e1e;
+        --text-color: #ffffff;
+        --header-background-color: #333333;
+        --header-text-color: #ffffff;
+        --heading-color: #ffffff;
+        --code-background-color: #2d2d2d;
+        --code-text-color: #f5f5f5;
+        --link-color: #8ab4f8;
+        --table-border-color: #444444;
+        --table-header-background-color: #555555;
+    }
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+#container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    grid-template-rows: 1fr;
+    grid-template-areas: "main sidebar";
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#container main {
+    grid-area: main;
+    padding: 2rem;
+}
+
+#container aside {
+    grid-area: sidebar;
+    width: 300px;
+    padding: 2rem 2rem 2rem 0;
+}
+
+header {
+    background-color: var(--header-background-color);
+    color: var(--header-text-color);
+    padding: 1rem;
+    text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+    margin-top: 1rem;
+}
+
+h1, h2 {
+    margin-top: 5rem;
+}
+
+p {
+    margin: 0.5rem 0;
+}
+
+code, pre {
+    background-color: var(--code-background-color);
+    color: var(--code-text-color);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: Consolas, monospace;
+}
+
+pre {
+    overflow: auto;
+    padding: 1rem;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul, ol {
+    margin: 0.5rem 0 0.5rem 2rem;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+th, td {
+    border: 1px solid var(--table-border-color);
+    padding: 0.5rem;
+    text-align: left;
+}
+
+th {
+    background-color: var(--table-header-background-color);
+}
+
+.theme-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    padding: .25rem 1rem;
+    cursor: pointer;
+}
+
+.theme-button svg {
+    margin: 0 7px 0 0;
+}

@@ -33,7 +33,7 @@ The Element Behaviors library should be added to your web pages in the `<head>` 
 - Production websites or applications should use the [compressed (minified) library](./dist/eb.min.js).
 - If bundling Element Behaviors into something else you may want the [uncompressed library](./dist/eb.js).
 
-If you would like to use a CDN we are on [jsDelivr](https://www.jsdelivr.com/):
+If you would like to use a CDN we are on [jsDelivr](https://www.jsdelivr.com/) at the following URLs:
 
 ```html
 <!-- For the latest release. -->
@@ -46,16 +46,16 @@ If you would like to use a CDN we are on [jsDelivr](https://www.jsdelivr.com/):
 # Contributing
 Contributions are welcome! If you encounter any issues or have suggestions for improvements, please [open an issue](https://github.com/caboodle-tech/element-behaviors/issues) on GitHub.
 
-If you would like to contribute code changes, you can do so by submitting a pull request. Pull request will not be accepted if they do not reference [open an issue](https://github.com/caboodle-tech/element-behaviors/issues). Before submitting a pull request, make sure to follow **all** these steps:
+> [!IMPORTANT]
+> Please note that we use `pnpm` instead of `npm` as our package manager. Additionally, we follow the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) format for all commit messages and pull requests.
+
+If you would like to contribute code changes, you can do so by submitting a pull request. Pull request will not be accepted if they do not reference an [open issue](https://github.com/caboodle-tech/element-behaviors/issues). Before submitting a pull request, make sure to follow **all** these steps:
 
 1. Fork the repository and create a new branch for your changes.
 2. Make your code changes and ensure that they adhere to the project's coding conventions enforced by the project's [eslint config](./eslint.config.js) and [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) messages.
 3. Test your changes thoroughly to ensure they do not introduce any regressions. Refer to the [testing instructions](./test/README.md) for more information on how to run the manual tests.
 4. Commit your changes and push them to your forked repository.
 5. Open a pull request on the main repository, including the issue number in the title, and provide a clear description of your changes.
-
-> [!IMPORTANT]
-> Please note that we use `pnpm` instead of `npm` as our package manager. Additionally, we follow the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) format for commit all messages.
 
 # Differences in *Element Behaviors*
 

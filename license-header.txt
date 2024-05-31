@@ -1,0 +1,4 @@
+/**
+ * Element Behaviors v{{version}} Copyright (c) {{year}} Caboodle Tech Inc.
+ * License and source code available at: https://github.com/caboodle-tech/element-behaviors
+ */

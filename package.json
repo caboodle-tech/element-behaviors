@@ -1,0 +1,14 @@
+{
+    "devDependencies": {
+        "@rollup/plugin-json": "^6.1.0",
+        "@rollup/plugin-terser": "^0.4.4",
+        "eslint": "^9.1.1",
+        "eslint-plugin-html": "^8.1.1",
+        "rollup": "^4.17.2"
+    },
+    "scripts": {
+        "build": "rollup --config rollup.config.js"
+    },
+    "type": "module",
+    "version": "1.0.0"
+}

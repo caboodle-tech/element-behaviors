@@ -2,7 +2,7 @@
 
 Element Behaviors let you easily add reusable features (behaviors) to any HTML element with a simple `has=""` attribute. This provides a flexible and efficient alternative to [custom elements](https://developer.mozilla.org/en-US/docs/Web/API/Web_components#custom_elements).
 
-The following information is a quick start guide to Element Behaviors. For more in-depth information and live examples please [visit the interactive manual](https://caboodle-tech.github.io/element-behaviors/index.html) website.
+The following information is a quick start guide to Element Behaviors. For more in-depth information and live examples please [visit the interactive manual](https://caboodle-tech.github.io/element-behaviors/index.html).
 
 # Usage
 
@@ -72,7 +72,7 @@ This library was heavily inspired by [Lume's Element Behaviors](https://github.c
 - The option to save state between removal and restoring of a behavior to the same element.
 - Working^ inside shadow dom and iframes.
 
-For more information [visit the interactive manual](https://caboodle-tech.github.io/element-behaviors/index.html) website for Element Behaviors. 
+For more information [visit the interactive manual](https://caboodle-tech.github.io/element-behaviors/index.html) for Element Behaviors. 
 
 **^** Since this library is not native code there are some restrictions and trade offs to these points. Please see the manuals [Limitations and Modified Behaviors](https://caboodle-tech.github.io/element-behaviors/index.html#limitations-and-modified-behavior) section for more information.
 

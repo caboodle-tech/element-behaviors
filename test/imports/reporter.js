@@ -20,6 +20,9 @@ const reporter = () => {
             state = [];
         },
         testPassed: (ary) => {
+            if (!ary) {
+                return false;
+            }
             if (ary.length !== state.length) {
                 return false;
             }

@@ -469,7 +469,9 @@ class ElementBehaviors {
                 if (instance.constructor.observedAttributes?.includes(attributeName)) {
                     const oldValue = instance[attributeName];
                     const newValue = element.getAttribute(attributeName);
-                    instance.attributeChangedCallback?.(attributeName, oldValue, newValue, element);
+                    instance.attributeChangedCallback?.(attributeName, oldValue, newValue);
+                    // Update the attributes old value to the new value.
+                    instance[attributeName] = newValue;
                 }
             }
         }
@@ -648,7 +650,7 @@ class ElementBehaviors {
          * We need to inject the same logic of #monkeyPatchShadowRoot() into the iframe. This
          * allows shadow DOM behaviors in the iframe to work with Element Behaviors.
          */
-        iframe.contentWindow.document.head.appendChild(document.createElement('script')).textContent = `
+        element.contentWindow.document.head.appendChild(document.createElement('script')).textContent = `
             /**
              * This is the same monkey patch from Element Behaviors but modified to send iframe
              * shadow dom behaviors to the main document for Element Behaviors to process.

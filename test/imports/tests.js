@@ -44,6 +44,16 @@ const interactWithFrameElement = async(element) => {
     return state;
 };
 
+const verifyObservedAttributes = async(element) => {
+    const state = ['CHANGED', 'CHANGED'];
+    element.pageCounter.removeAttribute('count');
+    element.pageCounter.setAttribute('count', 3);
+    if (element.oldValue !== undefined && element.newValue !== 3) {
+        state.push('FAILED CHECK');
+    }
+    return state;
+};
+
 const modifyPageElementAttribute = async(element) => {
     const state = ['CHANGED', 'CHANGED'];
     element.pageCounter.setAttribute('count', 9000);
@@ -166,6 +176,11 @@ export default [
         test: interactWithFrameElement,
         title: 'Interact with Counter (Frame)',
         description: 'Press the iframe counter 3 times and verify that the data attribute and elements text updates.'
+    },
+    {
+        test: verifyObservedAttributes,
+        title: 'Verify Observed Attributes',
+        description: 'Modify the page counter attribute and verify the <code>observedAttributes</code> is working correctly.'
     },
     {
         test: modifyPageElementAttribute,

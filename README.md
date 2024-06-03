@@ -2,6 +2,8 @@
 
 Element Behaviors let you easily add reusable features (behaviors) to any HTML element with a simple `has=""` attribute. This provides a flexible and efficient alternative to [custom elements](https://developer.mozilla.org/en-US/docs/Web/API/Web_components#custom_elements).
 
+The following information is a quick start guide to Element Behaviors. For more in-depth information and live examples please [visit the interactive manual](https://caboodle-tech.github.io/element-behaviors/index.html) website.
+
 # Usage
 
 Element Behaviors allow you to enhance standard HTML elements with multiple functionalities without the need to define traditional custom elements. This makes it easier to add complex interactions and features to any element.
@@ -24,7 +26,7 @@ Element Behaviors can also respond to the lifecycle events of HTML elements, all
 </div>
 ```
 
-With Element Behaviors, you can seamlessly integrate advanced functionalities into your web components, providing a powerful alternative to custom elements.
+With Element Behaviors, you can seamlessly integrate advanced functionalities into your web components, providing a powerful alternative to custom elements. View [live examples](https://caboodle-tech.github.io/element-behaviors/index.html) in the interactive manual, including a live demo of the loader example above.
 
 # Installation
 
@@ -61,14 +63,18 @@ If you would like to contribute code changes, you can do so by submitting a pull
 
 Attaching behaviors to elements is not a new concept and libraries attempting to do this have been around for some time. This library is my opinionated take on what *element behaviors* should look like, for a longer explanation please see the [Brief History](#brief-history) section below.
 
-This library was heavily inspired by [Lume's Element Behaviors](https://github.com/lume/element-behaviors) entity-component system, but includes functionality I felt was missing. Caboodle Tech's element behaviors is more closely aligned with the expectations (developers hopes) for [custom elements](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements) which includes:
+This library was heavily inspired by [Lume's Element Behaviors](https://github.com/lume/element-behaviors) entity-component system, but includes functionality I felt was missing. In summary you can expect:
 
-- [Responding to attribute changes](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#responding_to_attribute_changes) with `observedAttributes`.
+- [Responding to attribute changes](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#responding_to_attribute_changes) with `observedAttributes` just like custom elements.
+- [Responding to lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks) just like custom elements.
+- Easily and efficiently retrieve elements that have attached behaviors.
 - Saving state between disconnection and reconnection to any^ document.
 - The option to save state between removal and restoring of a behavior to the same element.
 - Working^ inside shadow dom and iframes.
 
-**^** Since this library is not native code there are some restrictions and trade offs to these points. Please see the TODO TODO for more information.
+For more information [visit the interactive manual](https://caboodle-tech.github.io/element-behaviors/index.html) website for Element Behaviors. 
+
+**^** Since this library is not native code there are some restrictions and trade offs to these points. Please see the manuals [Limitations and Modified Behaviors](https://caboodle-tech.github.io/element-behaviors/index.html#limitations-and-modified-behavior) section for more information.
 
 # Brief History
 
@@ -85,6 +91,6 @@ This desire for *elements with behaviors* is entwined with the history of [custo
 
 As of September 2023 the Web Incubator Community Group (WICG) has started discussing a [proposal](https://github.com/WICG/webcomponents/issues/1029) for "custom attributes for all elements, [and] enhancements for more complex use cases". I am excited to see what comes from this proposal, but as the web standards history has taught me, I won't hold my breath for the 100% adoption of any of these features.
 
-For the time being this implementation (Caboodle Tech's implementation) of element behaviors is exactly what *custom elements* should be in my mind: elements that support the  dynamic adding or removing of behaviors and attributes across documents. This is why Caboodle Tech's element behaviors [operates differently](#differences-in-element-behaviors) than Lume's.
+For the time being this implementation (Caboodle Tech's implementation) of element behaviors is exactly what *custom elements* should be in my mind: elements that not only support the  dynamic adding or removing of behaviors and attributes across documents, but also maintain their state. This is why Caboodle Tech's element behaviors [operates differently](#differences-in-element-behaviors) than Lume's.
 
 ~ Chris (May 2024)

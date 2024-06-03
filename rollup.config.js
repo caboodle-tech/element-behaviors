@@ -36,6 +36,14 @@ export default {
             plugins: [
                 terser()
             ]
-        }
+        },
+        // Compile and minified library for demo site.
+        {
+            file: 'www/js/eb.min.js',
+            format: 'iife',
+            plugins: [
+                terser()
+            ]
+        },
     ]
 };

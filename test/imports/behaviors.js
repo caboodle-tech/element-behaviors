@@ -7,6 +7,9 @@ class ClickCounter {
 
     static observedAttributes = ['count'];
 
+    oldValue;
+    newValue;
+
     constructor(element) {
         this.element = element;
         this.count = 0;
@@ -52,6 +55,8 @@ class ClickCounter {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
+        this.oldValue = oldValue;
+        this.newValue = newValue;
         this.reporter.registerAttributeChange();
         this.count = newValue;
         this.render();

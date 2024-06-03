@@ -287,6 +287,18 @@ elementBehaviors.define("lifecycle-example", ExampleLifecycleBehavior);</code></
                     <code>ms (int)</code>: How often observer restarts should be allowed.
                 </li>
             </ul>
+            <h3>elementBehaviors.undefine(name, behaviorClass)</h3>
+            <p>
+                Completely remove a behavior from existence; automatically calls <code>removeBehavior</code> on every element this behavior is found on.
+            </p>
+            <ul>
+                <li>
+                    <code>name (string)</code>: The behavior you would like to remove from existence.
+                </li>
+                <li>
+                    <code>behaviorClass (Class)</code>: The original class for this behavior or a reference to the class.
+                </li>
+            </ul>
             <h3>elementBehaviors.version()</h3>
             <p>
                 Returns the version of Element Behaviors in use.

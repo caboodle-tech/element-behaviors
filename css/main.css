@@ -1,0 +1,574 @@
+body.light {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --code-background-color: #f5f5f5;
+    --code-text-color: #2a2a2a;
+    --link-color: #1c90d0;
+    --table-border-color: #cccccc;
+    --table-header-background-color: #e0e0e0;
+}
+
+body.dark {
+    --background-color: #1e1e1e;
+    --text-color: #ffffff;
+    --code-background-color: #2d2d2d;
+    --code-text-color: #f5f5f5;
+    --link-color: #8ab4f8;
+    --table-border-color: #444444;
+    --table-header-background-color: #555555;
+}
+
+:root{
+    --callout-text-color: #856404;
+    --callout-border-color: #ffdfba;
+    --callout-background-color: #fff5d4;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth
+}
+
+body {
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 1.8rem;
+    line-height: 2.65rem;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+#container {
+    position: relative;
+    display: block;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+body.light #container main a {
+    text-decoration: underline;
+}
+
+#container main {
+    padding: 2rem;
+}
+
+#container aside {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    bottom: 0;
+    width: 300px;
+    padding: 2rem;
+    background: var(--background-color);
+    border-left: 2px solid var(--table-border-color);
+    z-index: 1000;
+    overflow-y: auto;
+    transition: right 0.5s ease-in-out;
+}
+
+#container aside.open {
+    right: 0;
+}
+
+#container #open-sidebar-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
+    height: 5rem;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    cursor: pointer;
+    z-index: 9000;
+    background: var(--code-background-color);
+    border: 1px solid var(--table-border-color);
+    border-radius: 4px;
+    filter: drop-shadow(0 2px 0.5px rgba(255, 255, 255, 0.1))
+}
+
+#open-sidebar-button .line {
+    width: 80%;
+    height: 3px;
+    margin: 0 auto 7px auto;
+    background-color: var(--text-color);
+    opacity: 1;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+#open-sidebar-button .line:last-of-type {
+    margin-bottom: 0;
+}
+
+#open-sidebar-button.open .line:nth-child(1) {
+    width: 100%;
+    transform: rotate(45deg) translate(8px, 7px);
+}
+
+#open-sidebar-button.open .line:nth-child(2) {
+    opacity: 0;
+}
+
+#open-sidebar-button.open .line:nth-child(3) {
+    width: 100%;
+    transform: rotate(-45deg) translate(8px, -6px);
+}
+
+aside ul {
+    list-style-type: none;
+    margin: 0;
+}
+
+aside ul li {
+    padding: .5rem;
+    margin-bottom: .25rem;
+    font-size: 1.8rem;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+aside ul li:hover, aside ul li.active {
+    cursor: pointer;
+    background: var(--code-background-color);
+    border: 1px solid var(--table-border-color);
+}
+
+aside ul li a {
+    display: block;
+    width: 100%;
+}
+
+aside ul li a:hover {
+    text-decoration: none;
+}
+
+footer{
+    padding: 5rem 0 3rem 0;
+}
+
+footer svg {
+    margin: 0 5px;
+    fill: #b96262;
+    transform: translate(0px, 5px);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+h1, h2 {
+    margin-top: 5rem;
+}
+
+h3, h4, h5, h6 {
+    margin: 3rem 0 1.5rem 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+}
+
+p {
+    margin: 0.5rem 0;
+}
+
+code {
+    padding: 1px 5px;
+    margin: 0 2px;
+    border: 1px solid var(--table-border-color);
+}
+
+pre {
+    overflow: auto;
+    border: 1px solid var(--table-border-color);
+}
+
+code, pre {
+    background-color: var(--code-background-color);
+    color: var(--code-text-color);
+    border-radius: 4px;
+    font-family: Consolas, monospace;
+}
+
+pre code {
+    margin: 0;
+    border: 0px solid transparent;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul, ol {
+    margin: 1rem 0 1rem 2rem;
+    padding: 0;
+}
+
+ul li, ol li {
+    margin-bottom: 1rem;
+}
+
+ul li:last-of-type, ol li:last-of-type {
+    margin-bottom: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+th, td {
+    border: 1px solid var(--table-border-color);
+    padding: 0.5rem;
+    text-align: left;
+}
+
+th {
+    background-color: var(--table-header-background-color);
+}
+
+.example-buttons {
+    padding: 1rem;
+    text-align: center;
+}
+
+.example-buttons button {
+    transform: scale(1.25);
+    margin: 0.75rem calc(1rem * 1.25 * 2);
+}
+
+.callout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    color: var(--callout-text-color);
+    border: 1px solid var(--callout-border-color);
+    border-radius: 4px;
+    background-color: var(--callout-background-color);
+}
+
+.callout a {
+    color: var(--callout-text-color);
+    text-decoration: underline;
+}
+
+.callout code {
+    opacity: .9;
+    border: 1px solid var(--callout-border-color);
+    border-radius: 4px;
+    background-color: var(--callout-text-color);
+}
+
+body.light .callout code {
+    opacity: .8;
+    color: var(--callout-background-color);
+}
+
+.callout div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+}
+
+.callout div svg {
+    width: calc(24px * 1.5);
+    transform: scale(1.5);
+    fill: var(--callout-text-color);
+}
+
+#lifecycle-demo {
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--table-border-color);
+    border-radius: 4px;
+}
+
+/* Override the default styles for the loader demo */
+#loader-demo div:not(.circle) > div {
+    background-color: var(--text-color) !important;
+}
+
+#loader-demo div.circle > div {
+    border-color: var(--text-color) transparent transparent transparent !important;
+}
+
+.theme-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    padding: .25rem 1rem;
+    margin: .75rem 0 0 0;
+    cursor: pointer;
+    color: var(--text-color);
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.theme-button:hover {
+    border: 1px solid var(--table-border-color);
+    background-color: var(--code-background-color);
+}
+
+.theme-button svg {
+    margin: 0 7px 0 0;
+    fill: var(--text-color);
+}
+
+#theme-selector-button {
+    margin: 2rem 0 .75rem 0;
+}
+
+#theme-selector-button svg {
+    transform: scale(0.9);
+}
+
+#theme-options {
+    width: 60%;
+    padding: 0 .75rem .75rem .75rem;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease-in-out, opacity 0.7s ease-in-out;
+}
+
+#theme-options.open {
+    opacity: 1;
+    max-height: 16rem;
+}
+
+#theme-options .theme-button {
+    width: 100%;
+    justify-content: left;
+}
+
+#default-theme-button svg {
+    transform: scale(0.9);
+}
+
+#dark-theme-button svg {
+    transform: rotate(-18deg) scale(0.85);
+}
+
+body.default #default-theme-button {
+    border: 1px solid var(--table-border-color);
+    background-color: var(--code-background-color);
+}
+
+body.light:not(.default) #light-theme-button {
+    border: 1px solid var(--table-border-color);
+    background-color: var(--code-background-color);
+}
+
+body.dark:not(.default) #dark-theme-button {
+    border: 1px solid var(--table-border-color);
+    background-color: var(--code-background-color);
+}
+
+pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.75rem;
+}
+
+/*
+Theme: StackOverflow Dark
+Description: Dark theme as used on stackoverflow.com
+Author: stackoverflow.com
+Maintainer: @Hirse
+Website: https://github.com/StackExchange/Stacks
+License: MIT
+Updated: 2021-05-15
+*/
+body.dark .hljs {
+    color: #fff;
+}
+body.dark .hljs-subst {
+    color: #fff;
+}
+body.dark .hljs-comment {
+    color: #999;
+}
+body.dark .hljs-attr,
+body.dark .hljs-doctag,
+body.dark .hljs-keyword,
+body.dark .hljs-meta .hljs-keyword,
+body.dark .hljs-section,
+body.dark .hljs-selector-tag {
+    color: #88aece;
+}
+body.dark .hljs-attribute {
+    color: #c59bc1;
+}
+body.dark .hljs-name,
+body.dark .hljs-number,
+body.dark .hljs-quote,
+body.dark .hljs-selector-id,
+body.dark .hljs-template-tag,
+body.dark .hljs-type {
+    color: #f08d49;
+}
+body.dark .hljs-selector-class {
+    color: #88aece;
+}
+body.dark .hljs-link,
+body.dark .hljs-regexp,
+body.dark .hljs-selector-attr,
+body.dark .hljs-string,
+body.dark .hljs-symbol,
+body.dark .hljs-template-variable,
+body.dark .hljs-variable {
+    color: #b5bd68;
+}
+body.dark .hljs-meta,
+body.dark .hljs-selector-pseudo {
+    color: #88aece;
+}
+body.dark .hljs-built_in,
+body.dark .hljs-literal,
+body.dark .hljs-title {
+    color: #f08d49;
+}
+body.dark .hljs-bullet,
+body.dark .hljs-code {
+    color: #ccc;
+}
+body.dark .hljs-meta .hljs-string {
+    color: #b5bd68;
+}
+body.dark .hljs-deletion {
+    color: #de7176;
+}
+body.dark .hljs-addition {
+    color: #76c490;
+}
+body.dark .hljs-emphasis {
+    font-style: italic;
+}
+body.dark .hljs-strong {
+    font-weight: 700;
+}
+
+/*
+Theme: StackOverflow Light
+Description: Light theme as used on stackoverflow.com
+Author: stackoverflow.com
+Maintainer: @Hirse
+Website: https://github.com/StackExchange/Stacks
+License: MIT
+Updated: 2021-05-15
+*/
+body.light .hljs {
+    color: #2f3337;
+}
+body.light .hljs-subst {
+    color: #2f3337;
+}
+body.light .hljs-comment {
+    color: #656e77;
+}
+body.light .hljs-attr,
+body.light .hljs-doctag,
+body.light .hljs-keyword,
+body.light .hljs-meta .hljs-keyword,
+body.light .hljs-section,
+body.light .hljs-selector-tag {
+    color: #015692;
+}
+body.light .hljs-attribute {
+    color: #803378;
+}
+body.light .hljs-name,
+body.light .hljs-number,
+body.light .hljs-quote,
+body.light .hljs-selector-id,
+body.light .hljs-template-tag,
+body.light .hljs-type {
+    color: #b75501;
+}
+body.light .hljs-selector-class {
+    color: #015692;
+}
+body.light .hljs-link,
+body.light .hljs-regexp,
+body.light .hljs-selector-attr,
+body.light .hljs-string,
+body.light .hljs-symbol,
+body.light .hljs-template-variable,
+body.light .hljs-variable {
+    color: #54790d;
+}
+body.light .hljs-meta,
+body.light .hljs-selector-pseudo {
+    color: #015692;
+}
+body.light .hljs-built_in,
+body.light .hljs-literal,
+body.light .hljs-title {
+    color: #b75501;
+}
+body.light .hljs-bullet,
+body.light .hljs-code {
+    color: #535a60;
+}
+body.light .hljs-meta .hljs-string {
+    color: #54790d;
+}
+body.light .hljs-deletion {
+    color: #c02d2e;
+}
+body.light .hljs-addition {
+    color: #2f6f44;
+}
+body.light .hljs-emphasis {
+    font-style: italic;
+}
+body.light .hljs-strong {
+    font-weight: 700;
+}
+
+/*
+Media Styles
+*/
+
+@media (min-width: 991px) {
+    #container {
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: minmax(0, 1fr) 280px;
+        grid-template-areas: "main sidebar";
+    }
+
+    #container main {
+        grid-area: main;
+    }
+
+    #container aside {
+        position: relative;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        grid-area: sidebar;
+        padding: 2rem 2rem 2rem 0;
+        border-left: none;
+    }
+
+    #container #open-sidebar-button {
+        display: none;
+    }
+}

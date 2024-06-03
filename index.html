@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="./css/main.css">
+    <!-- Styles needed for loader demo -->
+    <link rel="stylesheet" href="./css/loader.css">
+    <!-- Element Behaviors and demo scripts -->
+    <script src="./js/eb.min.js"></script> <!-- Must load first! -->
+    <script src="./js/behaviors/click-counter.js"></script>
+    <script src="./js/behaviors/lifecycle-callbacks.js"></script>
+    <script src="./js/behaviors/shadow-dom.js"></script>
+    <script src="./js/behaviors/iframe-demo.js"></script>
+    <script src="./js/behaviors/loader.js"></script>
+    <!-- Scripts needed for the demo site -->
+    <script src="./js/main.js"></script>
+    <!-- Highlight.js -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <div id="container">
+        <aside>
+            <h2 id="table-of-contents">Table of Contents</h2>
+            <ul>
+                <li class="active">
+                    <a href="#introduction">Introduction</a>
+                </li>
+                <li>
+                    <a href="#getting-started">Getting Started</a>
+                </li>
+                <li>
+                    <a href="#defining-behaviors">Defining Behaviors</a>
+                </li>
+                <li>
+                    <a href="#using-behaviors">Using Behaviors</a>
+                </li>
+                <li>
+                    <a href="#lifecycle-callbacks">Lifecycle Callbacks</a>
+                </li>
+                <li>
+                    <a href="#responding-to-attribute-changes">Responding to Attribute Changes</a>
+                </li>
+                <li>
+                    <a href="#api-reference">API Reference</a>
+                </li>
+                <li>
+                    <a href="#limitations-and-modified-behavior">Limitations and Modified Behavior</a>
+                </li>
+                <li>
+                    <a href="#examples">Examples</a>
+                </li>
+            </ul>
+            <button id="theme-selector-button" class="theme-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 4c-4.418 0-8 3.582-8 8s3.582 8 8 8v-16z"/></svg>
+                Theme
+            </button>
+            <div id="theme-options">
+                <button class="theme-button" id="default-theme-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 4c-4.418 0-8 3.582-8 8s3.582 8 8 8v-16z"/></svg>
+                    Device Default
+                </button>
+                <button class="theme-button" id="light-theme-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M22.088 13.126l1.912-1.126-1.912-1.126c-1.021-.602-1.372-1.91-.788-2.942l1.093-1.932-2.22-.02c-1.185-.01-2.143-.968-2.153-2.153l-.02-2.219-1.932 1.093c-1.031.583-2.34.233-2.941-.788l-1.127-1.913-1.127 1.913c-.602 1.021-1.91 1.372-2.941.788l-1.932-1.093-.02 2.219c-.01 1.185-.968 2.143-2.153 2.153l-2.22.02 1.093 1.932c.584 1.032.233 2.34-.788 2.942l-1.912 1.126 1.912 1.126c1.021.602 1.372 1.91.788 2.942l-1.093 1.932 2.22.02c1.185.01 2.143.968 2.153 2.153l.02 2.219 1.932-1.093c1.031-.583 2.34-.233 2.941.788l1.127 1.913 1.127-1.913c.602-1.021 1.91-1.372 2.941-.788l1.932 1.093.02-2.219c.011-1.185.969-2.143 2.153-2.153l2.22-.02-1.093-1.932c-.584-1.031-.234-2.34.788-2.942zm-10.117 6.874c-4.411 0-8-3.589-8-8s3.588-8 8-8 8 3.589 8 8-3.589 8-8 8zm6.029-8c0 3.313-2.687 6-6 6s-6-2.687-6-6 2.687-6 6-6 6 2.687 6 6z"/></svg>
+                    Light Mode
+                </button>
+                <button class="theme-button" id="dark-theme-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 10.999c1.437.438 2.562 1.564 2.999 3.001.44-1.437 1.565-2.562 3.001-3-1.436-.439-2.561-1.563-3.001-3-.437 1.436-1.562 2.561-2.999 2.999zm8.001.001c.958.293 1.707 1.042 2 2.001.291-.959 1.042-1.709 1.999-2.001-.957-.292-1.707-1.042-2-2-.293.958-1.042 1.708-1.999 2zm-1-9c-.437 1.437-1.563 2.562-2.998 3.001 1.438.44 2.561 1.564 3.001 3.002.437-1.438 1.563-2.563 2.996-3.002-1.433-.437-2.559-1.564-2.999-3.001zm-7.001 22c-6.617 0-12-5.383-12-12s5.383-12 12-12c1.894 0 3.63.497 5.37 1.179-2.948.504-9.37 3.266-9.37 10.821 0 7.454 5.917 10.208 9.37 10.821-1.5.846-3.476 1.179-5.37 1.179z"/></svg>
+                    Dark Mode
+                </button>
+            </div>
+        </aside>
+        <button id="open-sidebar-button">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </button>
+        <main>
+            <h1 id="element-behaviors">Element Behaviors</h1>
+            <p>
+                Element Behaviors is a JavaScript library that allows you to define and apply reusable behaviors to HTML elements. It follows the Custom Elements specifications closely, providing a way to encapsulate and compose functionality onto elements without the restrictions of Custom Elements.
+            </p>
+            <h2 id="introduction">Introduction</h2>
+            <p>
+                Element Behaviors allows you to enhance HTML elements with reusable behaviors. These behaviors can be defined, applied, and managed using the <a href="https://github.com/caboodle-tech/element-behaviors" target="_blank">Element Behaviors library</a>.
+            </p>
+            <h2 id="getting-started">Getting Started</h2>
+            <p>
+                To use Element Behaviors, include the library in your project. You can download it from <a href="https://github.com/caboodle-tech/element-behaviors?tab=readme-ov-file#installation">GitHub</a> or include it via a CDN script tag:
+            </p>
+            <pre><code>&lt;!-- For the latest release. --&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/caboodle-tech/element-behaviors@main/dist/eb.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- For older releases that have been tagged. Replace [TAG] with the proper semver number. --&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/caboodle-tech/element-behaviors@[TAG]/dist/eb.min.js"&gt;&lt;/script&gt;</code></pre>
+            <h2 id="defining-behaviors">Defining Behaviors</h2>
+            <p>
+                Behaviors are defined as JavaScript classes. Here is an example of a behavior that counts how many times it has been clicked:
+            </p>
+            <div class="callout">
+                <div>
+                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m2 4v16.002c0 .385.22.735.567.902.346.166.758.119 1.058-.121l4.725-3.781h12.65c.552 0 1-.448 1-1v-12.002c0-.552-.448-1-1-1h-18c-.552 0-1 .448-1 1zm18.5 11.502h-12.677l-4.323 3.46v-14.462h17zm-8.502-6.5c.414 0 .75.336.75.75v3.5c0 .414-.336.75-.75.75s-.75-.336-.75-.75v-3.5c0-.414.336-.75.75-.75zm.002-3c.552 0 1 .448 1 1s-.448 1-1 1-1-.448-1-1 .448-1 1-1z" fill-rule="nonzero"/></svg>
+                </div>
+                <p>
+                    This example could be simplified by removing the <code>observedAttributes</code> feature. This allows the counter to be updated by modifying the <code>count</code> attribute in addition to clicking on the element. See the <a href="#responding-to-attribute-changes">Responding to Attribute Changes</a> section for more information.
+                </p>
+            </div>
+            <pre><code>class ClickCounter {
+
+    static observedAttributes = ['count'];
+
+    #count;
+    #element;
+    #listener;
+
+    constructor(element) {
+        this.#element = element;
+        this.#listener = this.incrementCount.bind(this);
+
+        if(element.hasAttribute('count')) {
+            const count = Number(element.getAttribute('count')) || Number(0);
+            this.#count = count;
+            return;
+        }
+
+        element.setAttribute('count', 0);
+        this.#count = 0;
+    }
+
+    connectedCallback() {
+        this.render();
+        this.#element.addEventListener('click', this.#listener);
+    }
+
+    incrementCount() {
+        const count = Number(this.#element.getAttribute('count')) || Number(this.#count);
+        this.#element.setAttribute('count', count + 1);
+    }
+
+    disconnectedCallback() {
+        this.#element.removeEventListener('click', this.#listener);
+    }
+
+    render() {
+        this.#element.textContent = `Count: ${this.#count}`;
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name !== 'count') {
+            return;
+        }
+        this.#count = Number(newValue) || Number(oldValue) || 0;
+        this.render();
+    }
+
+}
+
+elementBehaviors.define('click-counter', ClickCounter);</code></pre>
+            <h2 id="using-behaviors">Using Behaviors</h2>
+            <p>
+                To use a defined behavior, register it with Element Behaviors:
+            </p>
+            <pre><code>elementBehaviors.define('click-counter', ClickCounter);</code></pre>
+            <p>
+                Then, apply the behavior to an element by adding a <code>has</code> attribute:
+            </p>
+            <pre><code>&lt;div has="click-counter"&gt;&lt;/div&gt;</code></pre>
+            <p>
+                Unlike Custom Elements, multiple behaviors can be added to a single element by separating them with spaces, you may also use single word behaviors names:
+            </p>
+            <pre><code>&lt;div has="click-counter logger"&gt;&lt;/div&gt;</code></pre>
+            <h2 id="lifecycle-callbacks">Lifecycle Callbacks</h2>
+            <p>
+                Once your behavior is registered, the browser will call certain methods of your class when code in the page interacts with your behavior in certain ways. By providing an implementation of these methods, known as <i>lifecycle callbacks</i>, you can run code in response to these events.
+            </p>
+            <ul>
+                <li>
+                    <code>connectedCallback()</code>: Called when the element is attached to the DOM.
+                </li>
+                <li>
+                    <code>disconnectedCallback()</code>: Called when the element is detached from the DOM.
+                </li>
+                <li>
+                    <code>adoptedCallback()</code>: Called when the element is moved to a new document.
+                </li>
+                <li>
+                    <code>attributeChangedCallback(name: string, oldValue: string, newValue: string)</code>: Called when one of the observed attributes is changed. See the <a href="#responding-to-attribute-changes">Responding to Attribute Changes</a> section for more details about this callback.
+                </li>
+                </li>
+            </ul>
+            <p>
+                Here is a minimal Behavior that logs these lifecycle events:
+            </p>
+            <pre><code>// Create a class for the element
+class ExampleLifecycleBehavior {
+    static observedAttributes = ["color", "size"];
+
+    constructor(element) {
+        // Keep a reference to the element this instance belongs to
+        this.#element = element;
+    }
+
+    connectedCallback() {
+        console.log("Custom element added to page.");
+    }
+
+    disconnectedCallback() {
+        console.log("Custom element removed from page.");
+    }
+
+    adoptedCallback() {
+        console.log("Custom element moved to new page.");
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        console.log(`Attribute ${name} has changed.`);
+    }
+}
+
+elementBehaviors.define("lifecycle-example", ExampleLifecycleBehavior);</code></pre>
+            <p>
+                You can test this behavior by adding the following code to your HTML and then interacting with it using your browser's developer tools. Make sure to open the console to see the log messages:
+            </p>
+            <pre><code>&lt;div has="lifecycle-example"&gt;&lt;/div&gt;</code></pre>
+            <h2 id="responding-to-attribute-changes">Responding to Attribute Changes</h2>
+            <p>
+                Like built-in elements, elements with behaviors can use HTML attributes to configure how the element behaves. To use attributes effectively, an element has to be able to respond to changes in an attribute's value. This is done by adding the following members to the class that implements the behavior:
+            </p>
+            <ul>
+                <li>
+                    A static property named <code>observedAttributes</code>. This must be an array containing the names of all attributes for which the element needs change notifications.
+                </li>
+                <li>
+                    An implementation of the <code>attributeChangedCallback()</code> lifecycle callback.
+                </li>
+            </ul>
+            <p>
+                The <code>attributeChangedCallback()</code> callback is then called whenever an attribute whose name is listed in the element's <code>observedAttributes</code> property is added, modified, removed, or replaced.
+            </p>
+            <h2 id="api-reference">API Reference</h2>
+            <h3>elementBehaviors.define(name, behaviorClass)</h3>
+            <p>
+                Registers a new behavior class.
+            </p>
+            <ul>
+                <li>
+                    <code>name (string)</code>: The name of the behavior.
+                </li>
+                <li>
+                    <code>behaviorClass (Class)</code>: The behavior class.
+                </li>
+            </ul>
+            <h3>elementBehaviors.getBehaviorElements([limitToBehavior])</h3>
+            <p>
+                Returns an array of elements that have at least one behavior attached to them. You can limit this result to a specific behavior or subset of behaviors.
+            </p>
+            <ul>
+                <li>
+                    <code>limitToBehavior (string, optional)</code>: A behavior name or behavior names separated by spaces to limit the results to. If not provided, all elements with behaviors are returned.
+                </li>
+            </ul>
+            <h3>elementBehaviors.removeBehavior(element, behavior)</h3>
+            <p>
+                Removes a behavior including its state from an element.
+            </p>
+            <ul>
+                <li>
+                    <code>element (HTMLElement|Array&lt;HTMLElement&gt;)</code>: An element or array of elements to remove the specified behaviors from.
+                </li>
+                <li>
+                    <code>behavior (string)</code>: A behavior or behaviors separated by spaces to remove from the specified element or elements.
+                </li>
+            </ul>
+            <h3>elementBehaviors.setObserverTimeout([ms])</h3>
+            <p>
+                Set a different restart interval for Element Behaviors observer.
+            </p>
+            <ul>
+                <li>
+                    <code>ms (int)</code>: How often observer restarts should be allowed.
+                </li>
+            </ul>
+            <h3>elementBehaviors.version()</h3>
+            <p>
+                Returns the version of Element Behaviors in use.
+            </p>
+            <h2 id="limitations-and-modified-behavior">Limitations and Modified Behavior</h2>
+            <p>
+                Because Element Behaviors is not a native web standard there are some limitations and modified behaviors to be aware of:
+            </p>
+            <ul>
+                <li>
+                    Unlike other Element Behaviors libraries, behavior states are saved! Removing a behavior from an elements <code>has</code> attribute does not delete the state, allowing it to be preserved between document removals or document adoptions. If you no longer want a behaviors state permanently on an element, you must use the <code>removeBehavior</code> method to remove that behavior from an element.
+                </li>
+                <li>
+                    Attaches behaviors to elements by using a non-standard (unhyphenated) <code>has</code> attribute on the element.
+                </li>
+                <li>
+                    Unhyphenated behavior names are supported in contrast to the Custom Elements standard of requiring hyphenated custom element names.
+                </li>
+                <li>
+                    Closed shadow DOMs are not supported.
+                </li>
+                <li>
+                    Shadow DOMs are supported by <a href="https://en.wikipedia.org/wiki/Monkey_patch" target="_blank">monkey patching</a> the <code>Element.prototype.attachShadow</code> method.
+                </li>
+                <li>
+                    As expected, behavior elements are subject to the cross-origin security policy of iframes. 
+                </li>
+                <li>
+                    Iframes not blocked by CORs policies are tracked by the parent document, but a script must be injected into the iframe to enable iframe shadow DOM support.
+                </li>
+                <li>
+                    For efficiency, Element Behaviors uses a single <code>MutationObserver</code> to watch the document, shadow DOMs, and iframes.
+                </li>
+                <li>
+                    Element Behaviors must restart it's observer every time a shadow DOM or iframe behavior is created. To improve efficiency these behaviors are processed in batches every 50 milliseconds by default. Use the <code>elementBehaviors.setObserverTimeout</code> method to reduce or increase this interval.
+                </li>
+            </ul>
+            <h2 id="examples">Examples</h2>
+            <p>
+                The following examples demonstrate how to use Element Behaviors in your HTML. You can interact with the elements to see the behaviors in action. The JavaScript source code for each example is on <a href="https://github.com/caboodle-tech/element-behaviors/tree/main/www/js/behaviors" target="_blank">GitHub</a>.
+            </p>
+            <h3>A Simple Counter</h3>
+            <p>
+                Using the <code>ClickCounter</code> behavior from the <a href="#defining-behaviors">Defining Behaviors</a> section, you can create a button that keeps track of how many times it has been clicked by adding the following code to your HTML:
+            </p>
+            <pre><code>&lt;button has="click-counter"&gt;&lt;/button&gt;</code></pre>
+            <p>
+                The button will then render on the page like this: <button has="click-counter" style="transform: translate(10px, -2px) scale(1.25);"></button>
+            </p>
+            <h3>Observed Attributes and Lifecycle Events</h3>
+            <p>
+                The following <code>div</code> is being used to demonstrate a modified version of the <code>ExampleLifecycleBehavior</code> from the <a href="#lifecycle-callbacks">Lifecycle Callbacks</a> section. You can use the buttons below to change the <code>color</code> and <code>size</code> attributes of the <code>div</code> to see the <code>attributeChangedCallback</code> event in action. Open the console to see the lifecycle events as you interact with the <code>div</code>:
+            </p>
+            <div class="example-buttons">
+                <button onclick="document.getElementById('lifecycle-demo').setAttribute('color', 'red');">Change Color to Red</button>
+                <button onclick="document.getElementById('lifecycle-demo').setAttribute('color', 'white');">Change Color to White</button>
+                <button onclick="document.getElementById('lifecycle-demo').setAttribute('color', 'blue');">Change Color to Blue</button>
+                <br>
+                <button onclick="document.getElementById('lifecycle-demo').setAttribute('size', '30');">Change Size to Small</button>
+                <button onclick="document.getElementById('lifecycle-demo').setAttribute('size', '60');">Change Size to Medium</button>
+                <button onclick="document.getElementById('lifecycle-demo').setAttribute('size', '90');">Change Size to Large</button>
+            </div>
+            <div id="lifecycle-demo" has="lifecycle-example"></div>
+            <h3>Shadow DOM</h3>
+            <p>
+                In this example we are again using the <code>ClickCounter</code> behavior from the <a href="#defining-behaviors">Defining Behaviors</a> section. This time however, we are adding the <code>button</code> inside an <code>open</code> shadow DOM. You can interact with the button below just like the previous example:
+            </p>
+            <div class="example-buttons">
+                <div id="shadow-dom-example"></div>
+            </div>
+            <h3>Iframe, DOM Adoption, and States</h3>
+            <p>
+                The following example demonstrates how to use Element Behaviors in an iframe; the iframe is same-origin meaning CORs is not an issue for this demo. The <code>button</code> is another <code>ClickCounter</code> behavior. Notice that we are passing the <code>button</code> from the iframe to this document and back every 5 seconds. This demonstrates not only <code>adoptedCallback</code> in action, but also the preservation of the <code>button</code>'s state between documents:
+            </p>
+            <div id="iframe-example">
+                <div id="document-area" style="height: 7rem;">
+                    <strong>Document</strong><br>
+                </div>
+                <div id="iframe-area">
+                    <strong>Iframe</strong><br>
+                    <iframe src="./iframe.html" style="width: 100%; height: 7rem;"></iframe>
+                </div>
+            </div>
+            <h3>Loader</h3>
+            <p>
+                The following example is a working demonstration of the <code>Loader</code> behavior from the <a href="https://github.com/caboodle-tech/element-behaviors?tab=readme-ov-file#usage">GitHub README</a>. It uses the <code>loader</code> attribute to set which loader to display. The <code>visible</code> attribute is used to toggle the loader on and off:
+            </p>
+            <div class="example-buttons">
+                <button onclick="document.getElementById('loader-demo').setAttribute('loader', 'wave');">Change to Wave</button>
+                <button onclick="document.getElementById('loader-demo').setAttribute('loader', 'dots');">Change to Dots</button>
+                <button onclick="document.getElementById('loader-demo').setAttribute('loader', 'circle');">Change to Circle</button>
+                <button onclick="document.getElementById('loader-demo').setAttribute('loader', 'text');">Change to Text</button>
+                <br>
+                <button onclick="document.getElementById('loader-demo').setAttribute('visible', 'false');">Hide Loader</button>
+                <button onclick="document.getElementById('loader-demo').setAttribute('visible', 'true');">Show Loader</button>
+            </div>
+            <br>
+            <div id="loader-demo" has="loader" loader="wave" visible="true">
+                The page is loading...
+            </div>
+            <footer>
+                <a href="https://github.com/caboodle-tech/element-behaviors" target="_blank">Element Behaviors</a> was <svg class="built" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M22 6v16h-20v-16h20zm2-6h-24v24h24v-24zm-11 11v1.649l3.229 1.351-3.229 1.347v1.653l5-2.201v-1.599l-5-2.2zm-7 2.201v1.599l5 2.2v-1.653l-3.229-1.347 3.229-1.351v-1.649l-5 2.201z"/></svg> with <svg class="love" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"/></svg> by <a href="https://github.com/caboodle-tech" target="_blank">Caboodle Tech Inc</a>.
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
